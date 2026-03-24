@@ -31,7 +31,15 @@ At GPT-4 pricing ($0.003/token), that's **$0.60/query**. For 1M daily queries: *
 | Relevance | 2.4/5 | 4.1/5 | **+71%** |
 | Response time | 12-15s | 2-3s | **-80%** |
 
-## Quick Start
+## Installation
+
+### One-Line Install (Recommended)
+
+```bash
+curl -sSL https://raw.githubusercontent.com/Jellybean-Systems/tokensaver/main/install.sh | bash
+```
+
+### Manual Install
 
 ```bash
 # Clone
@@ -46,6 +54,27 @@ $ python -m tokensaver.init
 
 # Run query
 $ python -m tokensaver.query "How's the dashboard?"
+```
+
+### OpenClaw Install
+
+For OpenClaw instances, copy the full setup from [`SETUP.md`](SETUP.md) — it auto-creates all necessary files.
+
+## Quick Start
+
+```python
+from memory.tokensaver_wrapper import tokensaver
+
+# Enhance any prompt
+user_query = "What's the status of our projects?"
+enhanced = tokensaver.enhance_prompt(user_query)
+
+# Send enhanced prompt to your LLM
+# Retrieves ~600 tokens of relevant context vs loading 200k+ tokens
+
+# Get savings report
+savings = tokensaver.get_savings_report()
+print(f"Saved ${savings['estimated_cost_saved_usd']:.2f} in token costs")
 ```
 
 ## How It Works
@@ -103,6 +132,7 @@ CREATE VIRTUAL TABLE memory_fts USING fts5(
 ## Documentation
 
 - [`RESEARCH.md`](RESEARCH.md) — Technical paper with full methodology
+- [`SETUP.md`](SETUP.md) — OpenClaw copy-paste installation guide
 - [`API.md`](API.md) — Python API reference
 - [`EXAMPLES.md`](EXAMPLES.md) — Use cases and code samples
 
